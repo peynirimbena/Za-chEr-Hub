@@ -1,40 +1,149 @@
+-- 1. STEP: IMMEDIATE CLIPBOARD COPY
+local discordLink = "https://discord.gg/4TpX76cJ"
+pcall(function()
+    if setclipboard then setclipboard(discordLink) end
+end)
+
+-- 2. STEP: LOAD RAYFIELD
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
+-- 3. STEP: CREATE WINDOW
 local Window = Rayfield:CreateWindow({
-   Name = "ZaİchEr hub",
-   LoadingTitle = "Fly & TUB Fix Loading...",
+   Name = "ZaİchEr Hub | Professional Edition",
+   Icon = 0,
+   LoadingTitle = "Authenticating...", 
    LoadingSubtitle = "by peynirimben2",
-   KeySystem = false,
+   ConfigurationSaving = {
+      Enabled = false,
+      FolderName = "ZaİchErHub_Configs",
+      FileName = "None"
+   },
+   Discord = {
+      Enabled = true,
+      Invite = "4TpX76cJ",
+      RememberJoins = false
+   },
+   KeySystem = true,
+   KeySettings = {
+      Title = "Security Verification",
+      Subtitle = "Join Discord for Key",
+      Note = "Link copied! Paste it in your browser and check #keys channel.",
+      FileName = "NoSaveKey_" .. tostring(math.random(1, 1000000)),
+      SaveKey = false,
+      GrabKeyFromSite = false,
+      Key = {"zaicher1"}
+   }
 })
 
 -- TABS
-local MainTab = Window:CreateTab("⚡ Main", 4483362458)
-local ScriptTab = Window:CreateTab("📜 Scripts", 4483362458)
+local HomeTab = Window:CreateTab("🏠 Home", 4483362458)
+local InkGameTab = Window:CreateTab("🖌️ Ink Game", 4483362458)
+local BattlegroundsTab = Window:CreateTab("⚔️ Battlegrounds", 4483362458) 
+local ANYTab = Window:CreateTab("🛠️ Universal", 4483362458)
 
---- 1. MAIN HACKS (Fly Fixlendi)
-MainTab:CreateSection("Movement Controls")
+-- ### HOME TAB ### --
+HomeTab:CreateSection("User Information")
+HomeTab:CreateLabel("Welcome, " .. game.Players.LocalPlayer.Name)
+HomeTab:CreateLabel("Current Server: " .. game.JobId)
 
-MainTab:CreateSlider({
-   Name = "Speed",
-   Range = {16, 500},
-   Increment = 1,
-   CurrentValue = 16,
-   Callback = function(Value) game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value end,
-})
-
-MainTab:CreateSlider({
-   Name = "Jump Power",
-   Range = {50, 500},
-   Increment = 1,
-   CurrentValue = 50,
-   Callback = function(Value) game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value end,
-})
-
-MainTab:CreateButton({
-   Name = "♻️ Reset Speed & Jump",
+HomeTab:CreateSection("Social Media")
+HomeTab:CreateButton({
+   Name = "Copy Discord Link (Again)",
    Callback = function()
-      game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
-      game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+      setclipboard(discordLink)
+      Rayfield:Notify({
+         Title = "Copied!",
+         Content = "Link has been copied to clipboard.",
+         Duration = 3
+      })
+   end,
+})
+
+HomeTab:CreateSection("Hub Status")
+HomeTab:CreateLabel("Status: Working / Undetected")
+HomeTab:CreateLabel("Version: 1.2.4 Premium")
+
+-- ### INK GAME TAB ### --
+InkGameTab:CreateSection("Script Executors")
+InkGameTab:CreateButton({
+   Name = "Load Boren Hub",
+   Callback = function() 
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/eikikrkr-ux/bypasok/refs/heads/main/ok"))()
+   end,
+})
+
+InkGameTab:CreateButton({
+   Name = "Load AzHub",
+   Callback = function() 
+      loadstring(game:HttpGet("https://officialaxscripts.vercel.app/scripts/AX-Loader.lua"))() 
+   end,
+})
+
+-- ### BATTLEGROUNDS TAB ### --
+BattlegroundsTab:CreateSection("Available Scripts")
+BattlegroundsTab:CreateButton({
+   Name = "Execute JJS",
+   Callback = function()
+      local req = (syn and syn.request) or (http and http.request) or http_request or request
+      if req then
+         loadstring(req({Url="https://peeky.pythonanywhere.com/jjs",Method="GET"}).Body)()
+      end
+   end,
+})
+
+BattlegroundsTab:CreateButton({
+   Name = "Execute TSB",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/DiosDi/VexonHub/refs/heads/main/VexonHub"))()
+   end,
+})
+
+BattlegroundsTab:CreateButton({
+   Name = "Ultimate Battleground",
+   Callback = function()
+      loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Eltons-hub-47847"))()
+   end,
+})
+
+-- ### UNIVERSAL TAB ### --
+ANYTab:CreateSection("Performance Boosters")
+ANYTab:CreateToggle({
+   Name = "Full FPS Booster",
+   CurrentValue = false,
+   Flag = "FPSBoost",
+   Callback = function(Value)
+      if Value then
+         for _,v in pairs(game:GetDescendants()) do
+            if v:IsA("BasePart") then v.Material = Enum.Material.Plastic v.Reflectance = 0
+            elseif v:IsA("Decal") or v:IsA("Texture") then v:Destroy()
+            elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then v.Enabled = false end
+         end
+         Rayfield:Notify({Title = "FPS Boost", Content = "Performance Enhanced!", Duration = 3})
+      end
+   end,
+})
+
+ANYTab:CreateSection("Miscellaneous")
+ANYTab:CreateButton({
+   Name = "Anti-AFK (Stay Active)",
+   Callback = function()
+      local vu = game:GetService("VirtualUser")
+      game:GetService("Players").LocalPlayer.Idled:Connect(function()
+         vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+         wait(1)
+         vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+      end)
+      Rayfield:Notify({Title = "Anti-AFK", Content = "Anti-AFK is now active!", Duration = 3})
+   end,
+})
+
+ANYTab:CreateButton({
+   Name = "Auto Piano (Key Required)",
+   Callback = function()
+      loadstring(game:HttpGet("https://hellohellohell0.com/talentless-raw/TALENTLESS.lua", true))()
+   end,
+})
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
    end,
 })
 
