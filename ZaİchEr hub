@@ -2,7 +2,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
    Name = "ZaİchEr hub",
-   LoadingTitle = "Loading Essential Scripts...",
+   LoadingTitle = "Loading Fixed Scripts...",
    LoadingSubtitle = "by peynirimben2",
    KeySystem = false,
 })
@@ -11,8 +11,8 @@ local Window = Rayfield:CreateWindow({
 local MainTab = Window:CreateTab("⚡ Main", 4483362458)
 local ScriptTab = Window:CreateTab("📜 Scripts", 4483362458)
 
---- 1. MAIN HACKS (İstediklerin)
-MainTab:CreateSection("Movement")
+--- 1. MAIN HACKS (Fixlendi)
+MainTab:CreateSection("Movement Controls")
 
 MainTab:CreateSlider({
    Name = "Speed",
@@ -31,28 +31,32 @@ MainTab:CreateSlider({
 })
 
 MainTab:CreateButton({
-   Name = "Fly GUI (E to Toggle)",
+   Name = "♻️ Reset Speed & Jump (Normal)",
+   Callback = function()
+      game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+      game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+      Rayfield:Notify({Title = "Reset Success", Content = "Speed and Jump set to normal.", Duration = 3})
+   end,
+})
+
+MainTab:CreateButton({
+   Name = "Fly GUI (Fixed Link)",
    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.lua"))() end,
 })
 
 MainTab:CreateButton({
    Name = "Noclip (Press N)",
    Callback = function()
-      local Noclip = nil
-      local Clip = nil
-      function nclp()
-         Clip = false
-         local function ncl()
-            if Clip == false and game.Players.LocalPlayer.Character ~= nil then
-               for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-                  if v:IsA('BasePart') and v.CanCollide then v.CanCollide = false end
-               end
+      local player = game.Players.LocalPlayer
+      local character = player.Character or player.CharacterAdded:Wait()
+      local noclip = true
+      game:GetService("RunService").Stepped:Connect(function()
+         if noclip then
+            for _, v in pairs(character:GetDescendants()) do
+               if v:IsA("BasePart") then v.CanCollide = false end
             end
-            wait(0.1)
          end
-         Noclip = game:GetService('RunService').Stepped:Connect(ncl)
-      end
-      nclp()
+      end)
    end,
 })
 
@@ -61,7 +65,7 @@ MainTab:CreateButton({
    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/DigitalityScripts/998877665544332211/main/SimpleFling.lua"))() end,
 })
 
---- 2. ÖZEL SCRİPTLER (Tam Liste)
+--- 2. ÖZEL SCRİPTLER (Eksiksiz)
 ScriptTab:CreateButton({
    Name = "TSB (Vexon Hub)",
    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/DiosDi/VexonHub/refs/heads/main/VexonHub"))() end,
