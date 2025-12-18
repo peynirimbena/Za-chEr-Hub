@@ -2,7 +2,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
    Name = "ZaİchEr hub",
-   LoadingTitle = "Loading Fixed Scripts...",
+   LoadingTitle = "Fly & TUB Fix Loading...",
    LoadingSubtitle = "by peynirimben2",
    KeySystem = false,
 })
@@ -11,7 +11,7 @@ local Window = Rayfield:CreateWindow({
 local MainTab = Window:CreateTab("⚡ Main", 4483362458)
 local ScriptTab = Window:CreateTab("📜 Scripts", 4483362458)
 
---- 1. MAIN HACKS (Fixlendi)
+--- 1. MAIN HACKS (Fly Fixlendi)
 MainTab:CreateSection("Movement Controls")
 
 MainTab:CreateSlider({
@@ -31,28 +31,27 @@ MainTab:CreateSlider({
 })
 
 MainTab:CreateButton({
-   Name = "♻️ Reset Speed & Jump (Normal)",
+   Name = "♻️ Reset Speed & Jump",
    Callback = function()
       game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
       game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
-      Rayfield:Notify({Title = "Reset Success", Content = "Speed and Jump set to normal.", Duration = 3})
    end,
 })
 
 MainTab:CreateButton({
-   Name = "Fly GUI (Fixed Link)",
-   Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.lua"))() end,
+   Name = "🚀 New Fly GUI (Fixed)",
+   Callback = function() 
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/skatbr/Fly-V3/main/Fly%20V3"))() 
+   end,
 })
 
 MainTab:CreateButton({
    Name = "Noclip (Press N)",
    Callback = function()
-      local player = game.Players.LocalPlayer
-      local character = player.Character or player.CharacterAdded:Wait()
       local noclip = true
       game:GetService("RunService").Stepped:Connect(function()
          if noclip then
-            for _, v in pairs(character:GetDescendants()) do
+            for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
                if v:IsA("BasePart") then v.CanCollide = false end
             end
          end
@@ -61,15 +60,24 @@ MainTab:CreateButton({
 })
 
 MainTab:CreateButton({
-   Name = "Fling (Kill Others)",
+   Name = "Fling",
    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/DigitalityScripts/998877665544332211/main/SimpleFling.lua"))() end,
 })
 
---- 2. ÖZEL SCRİPTLER (Eksiksiz)
+--- 2. ÖZEL SCRİPTLER (TUB Eklendi)
+ScriptTab:CreateSection("Battlegrounds")
+
+ScriptTab:CreateButton({
+   Name = "The Ultimate Bathgrounds (TUB)",
+   Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/TheUltimateBathgrounds/Main/main/Protected.lua"))() end,
+})
+
 ScriptTab:CreateButton({
    Name = "TSB (Vexon Hub)",
    Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/DiosDi/VexonHub/refs/heads/main/VexonHub"))() end,
 })
+
+ScriptTab:CreateSection("Diğerleri")
 
 ScriptTab:CreateButton({
    Name = "JJS Script",
