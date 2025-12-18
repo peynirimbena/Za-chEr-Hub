@@ -1,0 +1,106 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "ZaİchEr Hub | V4 Ultimate",
+   LoadingTitle = "Preparing Your Arsenal...",
+   LoadingSubtitle = "by peynirimben2",
+   KeySystem = false,
+})
+
+-- TABS
+local MainTab = Window:CreateTab("⚡ Main Hacks", 4483362458)
+local FunTab = Window:CreateTab("💃 Fun & Dance", 4483362458)
+local ScriptTab = Window:CreateTab("📜 Scripts", 4483362458)
+local InfoTab = Window:CreateTab("ℹ️ Info", 4483362458)
+
+--- 1. SECTION: MAIN HACKS (Speed, Jump, ESP)
+MainTab:CreateSection("Character Settings")
+
+MainTab:CreateSlider({
+   Name = "WalkSpeed",
+   Range = {16, 500},
+   Increment = 1,
+   Suffix = "Speed",
+   CurrentValue = 16,
+   Flag = "WS",
+   Callback = function(Value)
+      game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+   end,
+})
+
+MainTab:CreateSlider({
+   Name = "JumpPower",
+   Range = {50, 500},
+   Increment = 1,
+   Suffix = "Power",
+   CurrentValue = 50,
+   Flag = "JP",
+   Callback = function(Value)
+      game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+   end,
+})
+
+MainTab:CreateSection("Vision Tools")
+
+MainTab:CreateButton({
+   Name = "Unknow Hub ESP (Wallhack)",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Unknow0017/UnknowHub/main/Esp.lua"))()
+   end,
+})
+
+MainTab:CreateButton({
+   Name = "Infinite Yield (Admin Panel)",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+   end,
+})
+
+--- 2. SECTION: FUN & DANCE (İstediğin Danslar)
+FunTab:CreateSection("FE Dance Animations")
+
+FunTab:CreateButton({
+   Name = "FE Tars Dance (Other players can see!)",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/TheRealTars/Tars-Dance/main/TarsDance.lua"))()
+   end,
+})
+
+FunTab:CreateButton({
+   Name = "R6 Dance GUI (Populer)",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/00-P/Dans/main/Script.lua"))()
+   end,
+})
+
+FunTab:CreateButton({
+   Name = "Headless & Korblox (Visual Only)",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub-Backup/main/KorbloxHeadless.lua'))()
+   end,
+})
+
+--- 3. SECTION: SCRIPTS
+ScriptTab:CreateSection("Universal & Games")
+ScriptTab:CreateButton({
+   Name = "Boren Hub",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/BorenHub/BorenHub/main/BorenHub.lua"))()
+   end,
+})
+
+ScriptTab:CreateButton({
+   Name = "Vexon Hub (TSB)",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/DiosDi/VexonHub/refs/heads/main/VexonHub"))()
+   end,
+})
+
+--- 4. INFO SECTION
+InfoTab:CreateButton({
+   Name = "Copy Discord Link",
+   Callback = function()
+      setclipboard("https://discord.gg/4TpX76cJ")
+      Rayfield:Notify({Title = "Copied!", Content = "Discord link copied!", Duration = 5})
+   end,
+})
